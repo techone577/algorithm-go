@@ -53,35 +53,35 @@ func max(a, b int) int {
 
 // w means can put things of weight {w-1}
 func calculateResultForm(things []thing, w int) [][]int {
-	result := make([][]int, len(things))
-	for i := range result {
-		result[i] = make([]int, w)
+	B := make([][]int, len(things))
+	for i := range B {
+		B[i] = make([]int, w)
 	}
 
-	for i := range result {
-		for j := range result[i] {
+	for i := range B {
+		for j := range B[i] {
 			if i == 0 {
 				if j >= things[i].W {
-					result[i][j] = things[i].V
+					B[i][j] = things[i].V
 				} else {
-					result[i][j] = 0
+					B[i][j] = 0
 				}
 				continue
 			}
 			if j == 0 {
-				result[i][0] = 0
+				B[i][0] = 0
 				continue
 			}
 			if things[i].W <= j {
 				// pick
-				result[i][j] = max(result[i-1][j], result[i-1][j-things[i].W]+things[i].V)
+				B[i][j] = max(B[i-1][j], B[i-1][j-things[i].W]+things[i].V)
 			} else {
 				// not pick
-				result[i][j] = result[i-1][j]
+				B[i][j] = B[i-1][j]
 			}
 		}
 	}
-	return result
+	return B
 }
 
 func main() {
