@@ -52,7 +52,7 @@ func max(a, b int) int {
 }
 
 // w means can put things of weight {w-1}
-func calculateResultForm(things []thing, w int) [][]int {
+func calculateB(things []thing, w int) [][]int {
 	B := make([][]int, len(things))
 	for i := range B {
 		B[i] = make([]int, w)
@@ -85,6 +85,6 @@ func calculateResultForm(things []thing, w int) [][]int {
 }
 
 func main() {
-	r := calculateResultForm(things, 21)
-	fmt.Println(r)
+	r := calculateB(things, 21)
+	fmt.Println(r[4][20])
 }
